@@ -1,6 +1,13 @@
-import { ListNode } from './LinkedList'
+class ListNode<T> {
+    val: T
+    next: ListNode<T> | null
+    constructor(val: T) {
+        this.val = val
+        this.next = null
+    }
+}
 
-class Queue<T> {
+export default class Queue<T> {
     private head: ListNode<T> | null
     private tail: ListNode<T> | null
     private size: number
@@ -49,5 +56,3 @@ class Queue<T> {
         return arr
     }
 }
-
-const queue = new Queue<number>()
