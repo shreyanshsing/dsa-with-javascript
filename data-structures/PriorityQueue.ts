@@ -1,6 +1,13 @@
-import {ListNode} from './LinkedList'
+class ListNode<T> {
+    val: T
+    next: ListNode<T> | null
+    constructor(val: T) {
+        this.val = val
+        this.next = null
+    }
+}
 
-class PrioritQueue<T> {
+export default class PrioritQueue<T> {
     private head: ListNode<T> | null
     private tail: ListNode<T> | null
     private size: number
@@ -24,7 +31,6 @@ class PrioritQueue<T> {
     }
 
     append(val: T) {
-        
         const temp = new ListNode(val)
         if(this.size === 0) {
             this.head = temp
