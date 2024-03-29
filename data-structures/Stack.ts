@@ -1,7 +1,13 @@
+class ListNode<T> {
+    val: T
+    next: ListNode<T> | null
+    constructor(val: T) {
+        this.val = val
+        this.next = null
+    }
+}
 
-import {ListNode} from './LinkedList'
-
-class Stack<T> {
+export default class Stack<T> {
     private head: ListNode<T> | null
     private tail: ListNode<T> | null
     private size: number
@@ -10,6 +16,14 @@ class Stack<T> {
         this.size = 0
         this.head = null
         this.tail = null
+    }
+
+    #get(index: number): ListNode<T> | null {
+        let node = this.head
+        for (let i = 0; i < index; i++) {
+            node = node!.next
+        }
+        return node
     }
 
     append(val: T) {
@@ -24,20 +38,12 @@ class Stack<T> {
         this.size++
     }
 
-    private get(index: number): ListNode<T> | null {
-        let node = this.head
-        for (let i = 0; i < index; i++) {
-            node = node!.next
-        }
-        return node
-    }
-
     peek(): ListNode<T> | null {
         return this.tail
     }
 
     pop(): ListNode<T> {
-        const node = this.get(this.size - 2)!
+        const node = this.#get(this.size - 2)!
         node.next = null
         const lastElm = this.tail!
         this.tail = node
@@ -59,15 +65,3 @@ class Stack<T> {
         return arr
     }
 }
-
-const stack = new Stack<number>()
-
-stack.append(1)
-stack.append(2)
-stack.append(3)
-stack.append(4)
-stack.append(5)
-
-console.log(stack.pop())
-console.log(stack.pop())
-console.log(stack.toArray())

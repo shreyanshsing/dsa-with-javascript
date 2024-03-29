@@ -7,7 +7,7 @@ class ListNode<T> {
     }
 }
 
-class LinkedList<T> {
+export default class LinkedList<T> {
     head: ListNode<T> | null
     tail: ListNode<T> | null
     size: number
